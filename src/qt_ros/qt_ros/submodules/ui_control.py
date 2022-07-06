@@ -33,9 +33,9 @@ class ControlApp(QMainWindow):
         super(ControlApp, self).__init__()
         self.Ui_main = Ui_MainWindow() 
         self.ControlGui(mainwindow)
+        
 
     def ControlGui(self, mainwindow):  
-
         self.Ui_main.setupUi(mainwindow)
         ####选择任务类型&&&   
         #self.radioButton.setChecked(True)
@@ -50,14 +50,11 @@ class ControlApp(QMainWindow):
 
         ####输入半径、精度、速度、接触力大小
         self.Ui_main.radius.setValidator(QDoubleValidator(0.00,99.99,3))
-        self.Ui_main.radius.returnPressed.connect(self.textInput_radius)
-        
+        self.Ui_main.radius.returnPressed.connect(self.textInput_radius)        
         self.Ui_main.velocity.setValidator(QDoubleValidator(0.00,99.99,3))
         self.Ui_main.velocity.returnPressed.connect(self.textInput_velocity)
-
         self.Ui_main.precision.setValidator(QDoubleValidator(0.00,99.99,3))
         self.Ui_main.precision.returnPressed.connect(self.textInput_precision)
-
         self.Ui_main.contactForce.setValidator(QDoubleValidator(0.00,99.99,3))
         self.Ui_main.contactForce.returnPressed.connect(self.textInput_contactForce)
         ####输入半径、精度、速度、接触力大小
@@ -67,12 +64,10 @@ class ControlApp(QMainWindow):
         self.Ui_main.realsense.clicked.connect(self.cameraButtonClick)
         self.Ui_main.kinect.clicked.connect(self.cameraButtonClick)
         self.Ui_main.mercury.clicked.connect(self.cameraButtonClick)
-
         #选传感器
         self.Ui_main.axia.clicked.connect(self.sensorButtonClick)
         self.Ui_main.onrobot.clicked.connect(self.sensorButtonClick)
         self.Ui_main.lireach.clicked.connect(self.sensorButtonClick)
-
         #选机器人本体
         self.Ui_main.kinova.clicked.connect(self.robotButtonClick)
         self.Ui_main.rokae.clicked.connect(self.robotButtonClick)
@@ -103,48 +98,38 @@ class ControlApp(QMainWindow):
 
 
         ###实现pushButton功能
-
         # 构建环境吸引域
         self.Ui_main.AttactiveRegion.clicked.connect(self.ARIE_construct)
-
         # 选择方案
         self.Ui_main.CommonTwostep.clicked.connect(self.strategyChoose)
         self.Ui_main.InclineTwostep.clicked.connect(self.strategyChoose)
         self.Ui_main.OnlineStrategy.clicked.connect(self.strategyChoose)
-
         # 选择控制方法
         self.Ui_main.PositionCotrol.clicked.connect(self.methodChoose)
         self.Ui_main.ImpedanceControl.clicked.connect(self.methodChoose)
         self.Ui_main.ForceControl.clicked.connect(self.methodChoose)
-
         # 传感器数据图绘制的开始、暂停、终止按钮
         self.Ui_main.StartButton.clicked.connect(self.startTimer)
         self.Ui_main.SuspendButton.clicked.connect(self.suspendTimer)
         self.Ui_main.EndButton.clicked.connect(self.endTimer)
-
         # 进度条的开始、暂停、终止按钮
         self.Ui_main.StartButton.clicked.connect(self.myTimerStart)
         self.Ui_main.SuspendButton.clicked.connect(self.myTimerSuspend)
         self.Ui_main.EndButton.clicked.connect(self.myTimerEnd)
-
         ###实现pushButton功能
 
         ###进度条显示
         # 配置一个值表示进度条的当前进度
-        self.pv = 0
- 
+        self.pv = 0 
         # 申明一个时钟控件
         self.timer1 = QBasicTimer()
- 
         # 设置进度条的范围
         self.Ui_main.progressBar.setMinimum(0)
         self.Ui_main.progressBar.setMaximum(100)
         self.Ui_main.progressBar.setValue(self.pv)
-
         ###进度条显示
 
         ###传感器数据绘图
-
         self.drawTime = QtCore.QTimer(self)
         self.drawTime.timeout.connect(self.showTime)
         self.figure = plt.figure()
@@ -153,6 +138,10 @@ class ControlApp(QMainWindow):
         self.gridlayout.addWidget(self.canvas,0,1)
         self.x=[]
         ###传感器数据绘图
+
+        ###各类节点初始化
+        self.perception_node_init()
+
 
     '''
         任务类型选择槽函数
@@ -439,6 +428,17 @@ class ControlApp(QMainWindow):
     def ordersView(self):
         order = self.sender()
         self.Ui_main.OrdersView.setText("       " + order.text())
+
+    '''
+        节点初始化
+    '''
+    def perception_node_init(self):
+        self.perception_node = rclpy.create_node('perception_node')
+        self.coordinate_pub = self.perception_node.create_publisher(String, '/coordinate_pub', 
+            qos_profile=qos_profile_sensor_data)
+
+    def destroy_nodes(self):
+        self.perception_node.destroy_node()
         
 
 """ 

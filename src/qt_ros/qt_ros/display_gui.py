@@ -15,7 +15,7 @@ class GUI():
             print(f"an error ocurred: {e}")
         finally:
             print("destroy nodes")
-            #self.ui.destroy_nodes()
+            self.ui.destroy_nodes()
 
 
 def main(args=None):
