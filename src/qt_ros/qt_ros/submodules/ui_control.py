@@ -18,6 +18,15 @@ import numpy as np
 from .ARIE import ARIE_formulation
 # 插入背景图片
 from .image_rc import qt_resource_data
+# 引入ros相关
+import rclpy
+import rclpy
+import threading
+from rclpy import executors
+from rclpy.qos import qos_profile_sensor_data
+from std_msgs.msg import String
+from sensor_msgs.msg import Image
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class ControlApp(QMainWindow):
     def __init__(self, mainwindow):
@@ -29,16 +38,14 @@ class ControlApp(QMainWindow):
 
         self.Ui_main.setupUi(mainwindow)
         ####选择任务类型&&&   
-        #   self.radioButton.setChecked(True)
+        #self.radioButton.setChecked(True)
         self.Ui_main.AssembleButton.toggled['bool'].connect(self.buttonState)
         self.Ui_main.CaptureButton.toggled['bool'].connect(self.buttonState)
         self.Ui_main.OtherTaskButton.toggled['bool'].connect(self.buttonState) 
-
         ####选择任务类型&&&
 
         ####选择零件类型
         self.Ui_main.PartType.currentIndexChanged.connect(self.selectionChange) 
-
         ####选择零件类型
 
         ####输入半径、精度、速度、接触力大小
@@ -53,7 +60,6 @@ class ControlApp(QMainWindow):
 
         self.Ui_main.contactForce.setValidator(QDoubleValidator(0.00,99.99,3))
         self.Ui_main.contactForce.returnPressed.connect(self.textInput_contactForce)
-
         ####输入半径、精度、速度、接触力大小
 
         ###选择相机、力觉传感器、机器人本体 
@@ -71,33 +77,27 @@ class ControlApp(QMainWindow):
         self.Ui_main.kinova.clicked.connect(self.robotButtonClick)
         self.Ui_main.rokae.clicked.connect(self.robotButtonClick)
         self.Ui_main.kuka.clicked.connect(self.robotButtonClick)
-
         ###选择相机、力传感器、机器人本体
 
         ###参数显示        
         self.Ui_main.ParameterEstimate.clicked.connect(self.parameterview)
-
         ###参数显示
 
         ###原图与处理图显示
         self.timer_camera = QtCore.QTimer()  # 定义定时器，用于控制显示视频的帧率
         self.cap = cv2.VideoCapture()  # 视频流
         self.CAM_NUM = 8  # 为0时表示视频流来自笔记本内置摄像头
-
         self.timer_camera.timeout.connect(self.show_camera)  # 若定时器结束，则调用show_camera()
         self.Ui_main.RawImage.clicked.connect(self.button_open_camera_clicked)
         self.timer_camera.timeout.connect(self.show_processed_image)
         self.Ui_main.ProcessingImage.clicked.connect(self.chang_button_text)
-
         ###原图显示
 
         ####输入初始偏转角大小
         # self.Ui_main.thetaX.setValidator(QIntValidator(0,90)) # 限制角度输入为0~90°
-        self.Ui_main.thetaX.returnPressed.connect(self.angleInput_x)
-        
+        self.Ui_main.thetaX.returnPressed.connect(self.angleInput_x)    
         # self.Ui_main.thetaY.setValidator(QIntValidator(0,90)) # 限制角度输入为0~90°
         self.Ui_main.thetaY.returnPressed.connect(self.angleInput_y)
-
         # self.Ui_main.thetaZ.setValidator(QIntValidator(0,90)) # 限制角度输入为0~90°
         self.Ui_main.thetaZ.returnPressed.connect(self.angleInput_z)
 
