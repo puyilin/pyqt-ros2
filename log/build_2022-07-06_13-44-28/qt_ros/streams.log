@@ -1,0 +1,59 @@
+[1.811s] Invoking command in '/home/lpc/ros2_project/pyqt_ros2/src/qt_ros': PYTHONPATH=/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/qt_ros build --build-base /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build install --prefix /home/lpc/ros2_project/pyqt_ros2/install/qt_ros --record /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log --single-version-externally-managed
+[2.088s] running egg_info
+[2.088s] creating ../../build/qt_ros/qt_ros.egg-info
+[2.088s] writing ../../build/qt_ros/qt_ros.egg-info/PKG-INFO
+[2.089s] writing dependency_links to ../../build/qt_ros/qt_ros.egg-info/dependency_links.txt
+[2.089s] writing entry points to ../../build/qt_ros/qt_ros.egg-info/entry_points.txt
+[2.089s] writing requirements to ../../build/qt_ros/qt_ros.egg-info/requires.txt
+[2.089s] writing top-level names to ../../build/qt_ros/qt_ros.egg-info/top_level.txt
+[2.122s] writing manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+[2.164s] reading manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+[2.164s] writing manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+[2.165s] running build
+[2.165s] running build_py
+[2.165s] creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build
+[2.165s] creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib
+[2.165s] creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros
+[2.165s] copying qt_ros/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros
+[2.165s] creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.165s] copying qt_ros/submodules/image_rc.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.167s] copying qt_ros/submodules/test_ARIE_formulation.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.168s] copying qt_ros/submodules/display_gui.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.168s] copying qt_ros/submodules/backup_ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.168s] copying qt_ros/submodules/Ui_mainwin.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.168s] copying qt_ros/submodules/ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.168s] copying qt_ros/submodules/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.168s] copying qt_ros/submodules/ui_control.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.169s] running install
+[2.170s] running install_lib
+[2.171s] creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros
+[2.171s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros
+[2.171s] creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.171s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/image_rc.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.173s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/test_ARIE_formulation.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.173s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/display_gui.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.173s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/backup_ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.173s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/Ui_mainwin.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.174s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.174s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.174s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/ui_control.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.174s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/__init__.py to __init__.cpython-38.pyc
+[2.176s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/image_rc.py to image_rc.cpython-38.pyc
+[2.194s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/test_ARIE_formulation.py to test_ARIE_formulation.cpython-38.pyc
+[2.194s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/display_gui.py to display_gui.cpython-38.pyc
+[2.197s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/backup_ARIE.py to backup_ARIE.cpython-38.pyc
+[2.200s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/Ui_mainwin.py to Ui_mainwin.cpython-38.pyc
+[2.205s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/ARIE.py to ARIE.cpython-38.pyc
+[2.208s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/__init__.py to __init__.cpython-38.pyc
+[2.208s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/ui_control.py to ui_control.cpython-38.pyc
+[2.211s] running install_data
+[2.211s] creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index
+[2.212s] creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index/resource_index
+[2.212s] creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index/resource_index/packages
+[2.212s] copying resource/qt_ros -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index/resource_index/packages
+[2.212s] copying package.xml -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/qt_ros
+[2.212s] running install_egg_info
+[2.213s] Copying ../../build/qt_ros/qt_ros.egg-info to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros-0.0.0-py3.8.egg-info
+[2.214s] running install_scripts
+[2.236s] writing list of installed files to '/home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log'
+[2.265s] Invoked command in '/home/lpc/ros2_project/pyqt_ros2/src/qt_ros' returned '0': PYTHONPATH=/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/qt_ros build --build-base /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build install --prefix /home/lpc/ros2_project/pyqt_ros2/install/qt_ros --record /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log --single-version-externally-managed

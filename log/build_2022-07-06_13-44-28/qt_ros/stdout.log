@@ -1,0 +1,57 @@
+running egg_info
+creating ../../build/qt_ros/qt_ros.egg-info
+writing ../../build/qt_ros/qt_ros.egg-info/PKG-INFO
+writing dependency_links to ../../build/qt_ros/qt_ros.egg-info/dependency_links.txt
+writing entry points to ../../build/qt_ros/qt_ros.egg-info/entry_points.txt
+writing requirements to ../../build/qt_ros/qt_ros.egg-info/requires.txt
+writing top-level names to ../../build/qt_ros/qt_ros.egg-info/top_level.txt
+writing manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+reading manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+writing manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build
+creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib
+creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros
+copying qt_ros/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros
+creating /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/image_rc.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/test_ARIE_formulation.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/display_gui.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/backup_ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/Ui_mainwin.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+copying qt_ros/submodules/ui_control.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+running install
+running install_lib
+creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros
+creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/image_rc.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/test_ARIE_formulation.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/display_gui.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/backup_ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/Ui_mainwin.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/ARIE.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/__init__.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/ui_control.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/image_rc.py to image_rc.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/test_ARIE_formulation.py to test_ARIE_formulation.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/display_gui.py to display_gui.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/backup_ARIE.py to backup_ARIE.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/Ui_mainwin.py to Ui_mainwin.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/ARIE.py to ARIE.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/__init__.py to __init__.cpython-38.pyc
+byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/ui_control.py to ui_control.cpython-38.pyc
+running install_data
+creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index
+creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index/resource_index
+creating /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index/resource_index/packages
+copying resource/qt_ros -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/ament_index/resource_index/packages
+copying package.xml -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/share/qt_ros
+running install_egg_info
+Copying ../../build/qt_ros/qt_ros.egg-info to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log'

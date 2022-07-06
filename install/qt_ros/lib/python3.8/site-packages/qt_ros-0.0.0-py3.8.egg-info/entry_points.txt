@@ -1,0 +1,4 @@
+[console_scripts]
+display_gui = qt_ros.display_gui:main
+main_gui = qt_ros.main_gui:main
+
