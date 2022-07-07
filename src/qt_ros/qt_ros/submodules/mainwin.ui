@@ -58,7 +58,7 @@
     <property name="font">
      <font>
       <family>黑体</family>
-      <pointsize>14</pointsize>
+      <pointsize>8</pointsize>
      </font>
     </property>
    </widget>
@@ -118,7 +118,7 @@
     <property name="font">
      <font>
       <family>黑体</family>
-      <pointsize>14</pointsize>
+      <pointsize>8</pointsize>
      </font>
     </property>
    </widget>
@@ -1504,7 +1504,7 @@
      <x>0</x>
      <y>0</y>
      <width>1605</width>
-     <height>23</height>
+     <height>28</height>
     </rect>
    </property>
   </widget>

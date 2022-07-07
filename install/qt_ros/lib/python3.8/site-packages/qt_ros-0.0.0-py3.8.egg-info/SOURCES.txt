@@ -15,7 +15,9 @@ qt_ros/submodules/ARIE.py
 qt_ros/submodules/Ui_mainwin.py
 qt_ros/submodules/__init__.py
 qt_ros/submodules/backup_ARIE.py
+qt_ros/submodules/coordinate.py
 qt_ros/submodules/display_gui.py
+qt_ros/submodules/force_figure.py
 qt_ros/submodules/image_rc.py
 qt_ros/submodules/layout.py
 qt_ros/submodules/test_ARIE_formulation.py
