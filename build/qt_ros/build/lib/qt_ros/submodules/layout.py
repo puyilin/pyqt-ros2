@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
         self.executor = executors.MultiThreadedExecutor()
         self.executor.add_node(self.sub)
         self.executor.add_node(self.sub_2)
-
+       
         self.executor_thread = threading.Thread(
             target=self.executor.spin, daemon=True)
         self.executor_thread.start()

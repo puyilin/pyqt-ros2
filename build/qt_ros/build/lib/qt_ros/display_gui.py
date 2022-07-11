@@ -17,7 +17,6 @@ class GUI():
             print("destroy nodes")
             self.ui.destroy_nodes()
 
-
 def main(args=None):
     try:
         rclpy.init(args=args)

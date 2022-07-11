@@ -27,9 +27,8 @@ import threading
 from rclpy import executors
 from rclpy.qos import qos_profile_sensor_data
 from std_msgs.msg import String, Float32MultiArray
-from sensor_msgs.msg import Image
 from PyQt5 import QtCore, QtGui, QtWidgets
-import pyrealsense2 as rs
+from .perception import perception_node
 
 class ControlApp(QMainWindow):
     def __init__(self, mainwindow):
@@ -259,18 +258,7 @@ class ControlApp(QMainWindow):
         # print('你按下的按钮是:' + Camera.text())
         self.Ui_main.OrdersView.append('您选择的视觉传感为:' + Camera.text())   #文本框逐条添加数据
         self.Ui_main.OrdersView.moveCursor(self.Ui_main.OrdersView.textCursor().End)  #文本框显示到底部
-        try:
-            self.pipeline = rs.pipeline()
-            config = rs.config()
-            #config.enable_device_from_file("666.bag")#这是打开相机录制的视频
-            config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30) #这是打开相机
-            config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-            self.pipeline.start(config)
-            align_to = rs.stream.color      # align_to 是计划对齐深度帧的流类型
-            self.align = rs.align(align_to)      # rs.align 执行深度帧与其他帧的对齐
-        except RuntimeError:
-            QtWidgets.QMessageBox.warning(self, 'warning', "请检查相机于电脑是否连接正确", buttons=QtWidgets.QMessageBox.Ok)
-
+        self.perception = perception_node()
 
     def sensorButtonClick(self):
         sensor = self.sender()
@@ -315,18 +303,11 @@ class ControlApp(QMainWindow):
             cv2.destroyAllWindows()
             self.Ui_main.rawImageShow.clear()  # 清空视频显示区域
             self.Ui_main.RawImage.setText('原图')
-    def show_camera(self):
 
-        frames = self.pipeline.wait_for_frames()
-        depth_frame = frames.get_depth_frame()
-        color_frame = frames.get_color_frame()            
-        if  depth_frame or  color_frame:
-        # Convert images to numpy arrays
-            depth_image = np.asanyarray(depth_frame.get_data())
-            self.color_image = np.asanyarray(color_frame.get_data())
-            # Apply colormap on depth image (image must be converted to 8-bit per pixel first)
-            depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.03), cv2.COLORMAP_JET)
-            image = cv2.resize(self.color_image, (160,120))
+    def show_camera(self):
+        flag, color_image = self.perception.image_show()
+        if flag == 1:
+            image = cv2.resize(color_image, (160,120))
             show = cv2.resize(image, (160, 120))  # 把读到的帧的大小重新设置为 640x480
             #show = cv2.cvtColor(show, cv2.COLOR_BGR2RGB)  # 视频色彩转换回RGB，这样才是现实的颜色
             showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
@@ -342,51 +323,8 @@ class ControlApp(QMainWindow):
 
     def show_processed_image(self):
 
-        if self.Ui_main.ProcessingImage.text() == "关闭图片":
-            
-            frame = self.color_image
-            # 灰度处理
-            img_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            # 高斯滤波
-            src = cv2.GaussianBlur(img_gray, (3, 3), 0)
-            # 二值化处理
-            ret, binary = cv2.threshold(src, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-            # canny边缘检测
-            img_canny = cv2.Canny(binary, 80, 160)
-            # 形态学操作
-            k = np.ones((3, 3), dtype=np.uint8)
-            img_binary = cv2.morphologyEx(img_canny, cv2.MORPH_CLOSE, k)
-            
-            # 轮廓发现
-            contours, hierarchy = cv2.findContours(img_binary, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-            #draw0 = cv2.drawContours(frame, contours, -1, (255, 0, 0), 3)
-            #cv2.circle(frame, (100, 100), 2, (255, 0, 0), -1, 2, 0)
-            #cv2.circle(frame, (400, 100), 2, (255, 0, 0), -1, 2, 0)            
-            '''
-            if contours is not None:
-                for index in range(len(contours)):
-                    (x, y), radius = cv2.minEnclosingCircle(contours[index])
-                    if 150> radius > 50:
-                        center = (int(x), int(y))
-                        radius = int(radius)
-                        cv2.circle(frame, center, radius, (0, 255, 0), 2)
-            '''           
-            if contours is not None:  
-                for i in range(len(contours)): 
-                    if len(contours[i]) > 50:
-                        # 椭圆拟合
-                        (cx, cy), (a, b), angle = cv2.fitEllipse(contours[i])
-                        if (abs(a-b) < 5) and (200>a>60):
-                            # 绘制椭圆和圆心
-                            self.center_x = np.int(cx)
-                            self.center_y = np.int(cy)
-                            self.point0_x = self.center_x + np.int(a/2) 
-                            self.point0_y = self.center_y 
-                            cv2.ellipse(frame, (self.center_x, self.center_y),
-                                        (np.int16(a/2), np.int16(b/2)), angle, 0, 360, (0, 255, 0), 2, 8, 0)
-                            cv2.circle(frame, (self.center_x, self.center_y), 2, (255, 0, 0), -1, 2, 0)
-                            cv2.circle(frame, (self.point0_x, self.point0_y), 2, (255, 0, 0), -1, 2, 0)
-            # 显示处理的图片
+        if self.Ui_main.ProcessingImage.text() == "关闭图片":            
+            frame = self.perception.image_process()
             show_1 = cv2.resize(frame, (160, 120))  # 把读到的帧的大小重新设置为 640x480
             show_1 = cv2.cvtColor(show_1, cv2.COLOR_BGR2RGB)  # 视频色彩转换回RGB，这样才是现实的颜色
             showImage_1 = QtGui.QImage(show_1.data, show_1.shape[1], show_1.shape[0],
@@ -401,15 +339,7 @@ class ControlApp(QMainWindow):
     def parameterview(self):
 
         if self.timer_camera.isActive() == True:          
-            colcor_intrin, depth_intrin, image_color, image_depth, aligned_depth_frame = get_aligned_images(self.pipeline, self.align)
-            center_pixel = [self.center_x, self.center_y]
-            point_pixel = [self.point0_x, self.point0_y]
-            dis = aligned_depth_frame.get_distance(self.center_x, self.center_y)        # 获取该像素点对应的深度
-            center_coordinate = rs.rs2_deproject_pixel_to_point(depth_intrin, center_pixel, dis - 0.1)
-            point_coordinate = rs.rs2_deproject_pixel_to_point(depth_intrin, point_pixel, dis - 0.1)
-            radius = sqrt((center_coordinate[0]-point_coordinate[0])**2 + (center_coordinate[1]-point_coordinate[1])**2)
-            center_coordinate = str(center_coordinate)
-            radius = str(radius)
+            center_coordinate, radius = self.perception.coordinate_get()
             if self.Ui_main.ParameterEstimate.text() == "参数估计":
                 if self.Ui_main.PartType.currentText() == "圆轴圆孔":
                     self.Ui_main.ParameterView_1.setText("中心位置:"+center_coordinate)
@@ -423,7 +353,6 @@ class ControlApp(QMainWindow):
                 self.Ui_main.ParameterView_2.setText("")
                 self.Ui_main.ParameterEstimate.setText("参数估计")
 
-
     '''
         进度条槽函数
     '''
@@ -433,13 +362,11 @@ class ControlApp(QMainWindow):
             self.Ui_main.OrdersView.moveCursor(self.Ui_main.OrdersView.textCursor().End)  #文本框显示到底部
             self.timer1.start(100, self)
 
-
     def myTimerSuspend(self):
         if self.timer1.isActive():
             self.Ui_main.OrdersView.append('暂停执行任务')   #文本框逐条添加数据
             self.Ui_main.OrdersView.moveCursor(self.Ui_main.OrdersView.textCursor().End)  #文本框显示到底部
             self.timer1.stop()
-
 
     def myTimerEnd(self):
         self.timer1.stop()
@@ -494,7 +421,6 @@ class ControlApp(QMainWindow):
     def ordersView(self):
         order = self.sender()
         self.Ui_main.OrdersView.setText("       " + order.text())
-
     '''
         节点初始化
     '''
@@ -506,8 +432,7 @@ class ControlApp(QMainWindow):
             qos_profile=qos_profile_sensor_data)
 
     def destroy_nodes(self):
-        self.perception_node.destroy_node()
-        
+        self.perception_node.destroy_node()        
 
 """ 
     构建环境吸引域创建的画图类 
@@ -516,15 +441,13 @@ class ControlApp(QMainWindow):
 class Figure_Canvas(FigureCanvas):
 
     def __init__(self, parent = None, width = 3, height = 2):
-        fig = Figure(figsize=(width,height), dpi=96)
 
+        fig = Figure(figsize=(width,height), dpi=96)
         FigureCanvas.__init__(self, fig)
         self.setParent(parent)
-
         self.ax = fig.gca(projection='3d')
 
     def draw_fig(self,X,Y,lowest_z):
-
         self.ax.plot_surface(X,Y,lowest_z,cmap='rainbow')
         self.ax.set_xlabel('x', fontsize = 10)
         self.ax.set_ylabel('y', fontsize = 10)
@@ -534,10 +457,9 @@ class Figure_Canvas(FigureCanvas):
         self.ax.zaxis.set_tick_params(labelsize=6)
 
 if  __name__ == '__main__':
+
     app = QApplication(sys.argv)
     mainWindow = QMainWindow()
-    # 控制类的合体
     Control = ControlApp(mainWindow)
-    # 显示窗口 
     mainWindow.show()
     sys.exit(app.exec_())

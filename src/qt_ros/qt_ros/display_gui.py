@@ -17,7 +17,6 @@ class GUI():
             print("destroy nodes")
             self.ui.destroy_nodes()
 
-
 def main(args=None):
     try:
         rclpy.init(args=args)
@@ -26,7 +25,7 @@ def main(args=None):
     except KeyboardInterrupt:
         print("Keyboard interrupted")
     finally:
-        print("main gui finished")
+        print("display_gui finished")
 
 
 if __name__ == '__main__':
