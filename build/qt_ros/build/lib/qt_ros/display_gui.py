@@ -25,7 +25,7 @@ def main(args=None):
     except KeyboardInterrupt:
         print("Keyboard interrupted")
     finally:
-        print("main gui finished")
+        print("display_gui finished")
 
 
 if __name__ == '__main__':

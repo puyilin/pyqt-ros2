@@ -12,14 +12,15 @@ qt_ros/__init__.py
 qt_ros/display_gui.py
 qt_ros/main_gui.py
 qt_ros/submodules/ARIE.py
+qt_ros/submodules/Taskrequirement.py
 qt_ros/submodules/Ui_mainwin.py
 qt_ros/submodules/__init__.py
 qt_ros/submodules/backup_ARIE.py
 qt_ros/submodules/coordinate.py
-qt_ros/submodules/display_gui.py
 qt_ros/submodules/image_rc.py
 qt_ros/submodules/layout.py
-qt_ros/submodules/perception_node.py
+qt_ros/submodules/perception.py
+qt_ros/submodules/strategies.py
 qt_ros/submodules/test_ARIE_formulation.py
 qt_ros/submodules/ui_control.py
 resource/qt_ros

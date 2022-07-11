@@ -27,10 +27,8 @@ import threading
 from rclpy import executors
 from rclpy.qos import qos_profile_sensor_data
 from std_msgs.msg import String, Float32MultiArray
-from sensor_msgs.msg import Image
 from PyQt5 import QtCore, QtGui, QtWidgets
-import pyrealsense2 as rs
-from .perception_node import perception_node
+from .perception import perception_node
 
 class ControlApp(QMainWindow):
     def __init__(self, mainwindow):
@@ -305,6 +303,7 @@ class ControlApp(QMainWindow):
             cv2.destroyAllWindows()
             self.Ui_main.rawImageShow.clear()  # 清空视频显示区域
             self.Ui_main.RawImage.setText('原图')
+
     def show_camera(self):
         flag, color_image = self.perception.image_show()
         if flag == 1:
@@ -354,7 +353,6 @@ class ControlApp(QMainWindow):
                 self.Ui_main.ParameterView_2.setText("")
                 self.Ui_main.ParameterEstimate.setText("参数估计")
 
-
     '''
         进度条槽函数
     '''
@@ -364,13 +362,11 @@ class ControlApp(QMainWindow):
             self.Ui_main.OrdersView.moveCursor(self.Ui_main.OrdersView.textCursor().End)  #文本框显示到底部
             self.timer1.start(100, self)
 
-
     def myTimerSuspend(self):
         if self.timer1.isActive():
             self.Ui_main.OrdersView.append('暂停执行任务')   #文本框逐条添加数据
             self.Ui_main.OrdersView.moveCursor(self.Ui_main.OrdersView.textCursor().End)  #文本框显示到底部
             self.timer1.stop()
-
 
     def myTimerEnd(self):
         self.timer1.stop()
@@ -425,7 +421,6 @@ class ControlApp(QMainWindow):
     def ordersView(self):
         order = self.sender()
         self.Ui_main.OrdersView.setText("       " + order.text())
-
     '''
         节点初始化
     '''
@@ -437,8 +432,7 @@ class ControlApp(QMainWindow):
             qos_profile=qos_profile_sensor_data)
 
     def destroy_nodes(self):
-        self.perception_node.destroy_node()
-        
+        self.perception_node.destroy_node()        
 
 """ 
     构建环境吸引域创建的画图类 
@@ -447,15 +441,13 @@ class ControlApp(QMainWindow):
 class Figure_Canvas(FigureCanvas):
 
     def __init__(self, parent = None, width = 3, height = 2):
-        fig = Figure(figsize=(width,height), dpi=96)
 
+        fig = Figure(figsize=(width,height), dpi=96)
         FigureCanvas.__init__(self, fig)
         self.setParent(parent)
-
         self.ax = fig.gca(projection='3d')
 
     def draw_fig(self,X,Y,lowest_z):
-
         self.ax.plot_surface(X,Y,lowest_z,cmap='rainbow')
         self.ax.set_xlabel('x', fontsize = 10)
         self.ax.set_ylabel('y', fontsize = 10)
@@ -465,10 +457,9 @@ class Figure_Canvas(FigureCanvas):
         self.ax.zaxis.set_tick_params(labelsize=6)
 
 if  __name__ == '__main__':
+
     app = QApplication(sys.argv)
     mainWindow = QMainWindow()
-    # 控制类的合体
     Control = ControlApp(mainWindow)
-    # 显示窗口 
     mainWindow.show()
     sys.exit(app.exec_())
