@@ -7,6 +7,7 @@ from cmath import sqrt
 
 
 class perception_node():
+    
     def __init__(self):
         self.flag = 0
         self.open_camera()
