@@ -1,0 +1,28 @@
+[2.096s] Invoking command in '/home/lpc/ros2_project/pyqt_ros2/src/qt_ros': PYTHONPATH=/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/qt_ros build --build-base /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build install --prefix /home/lpc/ros2_project/pyqt_ros2/install/qt_ros --record /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log --single-version-externally-managed
+[2.353s] running egg_info
+[2.354s] writing ../../build/qt_ros/qt_ros.egg-info/PKG-INFO
+[2.355s] writing dependency_links to ../../build/qt_ros/qt_ros.egg-info/dependency_links.txt
+[2.355s] writing entry points to ../../build/qt_ros/qt_ros.egg-info/entry_points.txt
+[2.355s] writing requirements to ../../build/qt_ros/qt_ros.egg-info/requires.txt
+[2.355s] writing top-level names to ../../build/qt_ros/qt_ros.egg-info/top_level.txt
+[2.422s] reading manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+[2.423s] writing manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+[2.423s] running build
+[2.423s] running build_py
+[2.424s] copying qt_ros/submodules/strategies.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.424s] copying qt_ros/submodules/perception.py -> /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules
+[2.425s] running install
+[2.425s] running install_lib
+[2.427s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/strategies.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.427s] copying /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build/lib/qt_ros/submodules/perception.py -> /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules
+[2.428s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/strategies.py to strategies.cpython-38.pyc
+[2.430s] byte-compiling /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros/submodules/perception.py to perception.cpython-38.pyc
+[2.431s] running install_data
+[2.432s] running install_egg_info
+[2.433s] removing '/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros-0.0.0-py3.8.egg-info' (and everything under it)
+[2.434s] Copying ../../build/qt_ros/qt_ros.egg-info to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros-0.0.0-py3.8.egg-info
+[2.477s] running install_scripts
+[2.519s] Installing display_gui script to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/qt_ros
+[2.519s] Installing main_gui script to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/qt_ros
+[2.520s] writing list of installed files to '/home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log'
+[2.542s] Invoked command in '/home/lpc/ros2_project/pyqt_ros2/src/qt_ros' returned '0': PYTHONPATH=/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/qt_ros build --build-base /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build install --prefix /home/lpc/ros2_project/pyqt_ros2/install/qt_ros --record /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log --single-version-externally-managed

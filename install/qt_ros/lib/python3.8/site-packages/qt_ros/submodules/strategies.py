@@ -13,7 +13,7 @@ class StrategiesModules(Node):
         self.p_init_ax, self.p_init_ay, self.p_init_az = tsakrequirements.send_request_a()
         arie = ARIE_formulation(r, self.p_init_px, self.p_init_py, self.p_init_pz)
         self.arie_lowest_x, self.arie_lowest_y, self.arie_lowest_z = arie.ARIE_calculation()
-        self.h_init_px, self.h_init_py, self.h_init_pz = tsakrequirements.send_h_init_p()
+        self.h_init_px, self.h_init_py, self.h_init_pz = perception_node.coordinate_get()
 
     def strategies_formulation(self):
 
