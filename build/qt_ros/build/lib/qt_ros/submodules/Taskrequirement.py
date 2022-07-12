@@ -1,5 +1,6 @@
 class tsakrequirements():
-    def __init__(self):
+    
+    def __init__(self, radius):
         # 轴的参数初始化
         self.radius = 2.0
         # 轴的初始偏转
@@ -14,6 +15,10 @@ class tsakrequirements():
         self.arie_lowest_x = 0
         self.arie_lowest_y = 0
         self.arie_lowest_z = 0
+        # 孔的位置
+        self.h_init_px = 0
+        self.h_init_py = 0 
+        self.h_init_pz = 0
 
     def send_radius(self, radius):
 
@@ -40,3 +45,6 @@ class tsakrequirements():
         self.arie_lowest_y = lowest_py
         self.arie_lowest_z = lowest_pz
         return self.arie_lowest_x, self.arie_lowest_y, self.arie_lowest_z
+
+    def send_h_init_p(self, coordinate):
+        self.h_init_px, self.h_init_py, self.h_init_pz = coordinate[:]

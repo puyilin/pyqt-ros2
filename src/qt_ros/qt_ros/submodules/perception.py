@@ -3,7 +3,7 @@ import numpy as np
 import pyrealsense2 as rs
 import cv2
 from cmath import sqrt
-from .coordinate import get_aligned_images
+#from .coordinate import get_aligned_images
 
 
 class perception_node():
@@ -12,6 +12,7 @@ class perception_node():
         self.open_camera()
 
     def open_camera(self):
+        
         try:
             self.pipeline = rs.pipeline()
             config = rs.config()
@@ -24,6 +25,7 @@ class perception_node():
             QtWidgets.QMessageBox.warning(self, 'warning', "请检查相机于电脑是否连接正确", buttons=QtWidgets.QMessageBox.Ok)
 
     def image_show(self):
+
         frames = self.pipeline.wait_for_frames()
         depth_frame = frames.get_depth_frame()
         color_frame = frames.get_color_frame()            
@@ -70,8 +72,28 @@ class perception_node():
                         cv2.circle(frame, (self.point0_x, self.point0_y), 2, (255, 0, 0), -1, 2, 0)
         return frame
 
+    def get_aligned_images(self, pipeline, align):
+    
+        frames = pipeline.wait_for_frames()     # 等待获取图像帧，获取颜色和深度的框架集     
+        aligned_frames = align.process(frames)      # 获取对齐帧，将深度框与颜色框对齐  
+
+        aligned_depth_frame = aligned_frames.get_depth_frame()      # 获取对齐帧中的的depth帧 
+        aligned_color_frame = aligned_frames.get_color_frame()      # 获取对齐帧中的的color帧
+
+        #### 获取相机参数 ####
+        depth_intrin = aligned_depth_frame.profile.as_video_stream_profile().intrinsics     # 获取深度参数（像素坐标系转相机坐标系会用到）
+        color_intrin = aligned_color_frame.profile.as_video_stream_profile().intrinsics     # 获取相机内参
+
+
+        #### 将images转为numpy arrays ####  
+        img_color = np.asanyarray(aligned_color_frame.get_data())       # RGB图  
+        img_depth = np.asanyarray(aligned_depth_frame.get_data())       # 深度图（默认16位）
+
+        return color_intrin, depth_intrin, img_color, img_depth, aligned_depth_frame
+
+
     def coordinate_get(self):
-        colcor_intrin, depth_intrin, image_color, image_depth, aligned_depth_frame = get_aligned_images(self.pipeline, self.align)
+        colcor_intrin, depth_intrin, image_color, image_depth, aligned_depth_frame = self.get_aligned_images(self.pipeline, self.align)
         center_pixel = [self.center_x, self.center_y]
         point_pixel = [self.point0_x, self.point0_y]
         dis = aligned_depth_frame.get_distance(self.center_x, self.center_y)        # 获取该像素点对应的深度

@@ -12,6 +12,7 @@ class perception_node():
         self.open_camera()
 
     def open_camera(self):
+        
         try:
             self.pipeline = rs.pipeline()
             config = rs.config()
@@ -24,6 +25,7 @@ class perception_node():
             QtWidgets.QMessageBox.warning(self, 'warning', "请检查相机于电脑是否连接正确", buttons=QtWidgets.QMessageBox.Ok)
 
     def image_show(self):
+
         frames = self.pipeline.wait_for_frames()
         depth_frame = frames.get_depth_frame()
         color_frame = frames.get_color_frame()            

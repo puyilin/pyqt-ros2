@@ -1,5 +1,4 @@
 import sys
-from cmath import sqrt
 import cv2
 from PyQt5.QtWidgets import QApplication,QMainWindow, QGridLayout
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -17,7 +16,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 # 引入环境吸引域
 from .ARIE import ARIE_formulation
-from .coordinate import get_aligned_images
 # 插入背景图片
 from .image_rc import qt_resource_data
 # 引入ros相关

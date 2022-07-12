@@ -38,7 +38,6 @@ class ARIE_formulation(QThread):
         self.alpha = theta_x/180*math.pi
         self.beta = theta_y/180*math.pi
         self.gamma = theta_z/180*math.pi
-
         self.schedule  = 0.01 # 记录进程
 
         # print(vertex_position_initial[1,:])
