@@ -1,0 +1,22 @@
+[0.729s] Invoking command in '/home/lpc/ros2_project/pyqt_ros2/src/qt_ros': PYTHONPATH=/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/qt_ros build --build-base /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build install --prefix /home/lpc/ros2_project/pyqt_ros2/install/qt_ros --record /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log --single-version-externally-managed
+[0.971s] running egg_info
+[0.971s] writing ../../build/qt_ros/qt_ros.egg-info/PKG-INFO
+[0.972s] writing dependency_links to ../../build/qt_ros/qt_ros.egg-info/dependency_links.txt
+[0.972s] writing entry points to ../../build/qt_ros/qt_ros.egg-info/entry_points.txt
+[0.972s] writing requirements to ../../build/qt_ros/qt_ros.egg-info/requires.txt
+[0.972s] writing top-level names to ../../build/qt_ros/qt_ros.egg-info/top_level.txt
+[1.011s] reading manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+[1.014s] writing manifest file '../../build/qt_ros/qt_ros.egg-info/SOURCES.txt'
+[1.014s] running build
+[1.015s] running build_py
+[1.016s] running install
+[1.017s] running install_lib
+[1.019s] running install_data
+[1.020s] running install_egg_info
+[1.021s] removing '/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros-0.0.0-py3.8.egg-info' (and everything under it)
+[1.022s] Copying ../../build/qt_ros/qt_ros.egg-info to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages/qt_ros-0.0.0-py3.8.egg-info
+[1.023s] running install_scripts
+[1.041s] Installing display_gui script to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/qt_ros
+[1.042s] Installing main_gui script to /home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/qt_ros
+[1.042s] writing list of installed files to '/home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log'
+[1.064s] Invoked command in '/home/lpc/ros2_project/pyqt_ros2/src/qt_ros' returned '0': PYTHONPATH=/home/lpc/ros2_project/pyqt_ros2/install/qt_ros/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/qt_ros build --build-base /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/build install --prefix /home/lpc/ros2_project/pyqt_ros2/install/qt_ros --record /home/lpc/ros2_project/pyqt_ros2/build/qt_ros/install.log --single-version-externally-managed

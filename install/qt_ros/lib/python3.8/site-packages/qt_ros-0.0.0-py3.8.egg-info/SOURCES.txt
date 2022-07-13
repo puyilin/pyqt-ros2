@@ -16,7 +16,7 @@ qt_ros/submodules/Taskrequirement.py
 qt_ros/submodules/Ui_mainwin.py
 qt_ros/submodules/__init__.py
 qt_ros/submodules/backup_ARIE.py
-qt_ros/submodules/coordinate.py
+qt_ros/submodules/forcefigure.py
 qt_ros/submodules/image_rc.py
 qt_ros/submodules/layout.py
 qt_ros/submodules/perception.py

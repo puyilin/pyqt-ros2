@@ -1,9 +1,11 @@
+from ast import Str
 import sys
+import time
 import cv2
 from PyQt5.QtWidgets import QApplication,QMainWindow, QGridLayout
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtGui import QDoubleValidator
-from PyQt5.QtCore import QBasicTimer
+from PyQt5.QtCore import QBasicTimer,Qt
 # 引入窗口控件类
 from .Ui_mainwin import Ui_MainWindow
 # 在GUI中显示matplotlib图形
@@ -12,6 +14,7 @@ matplotlib.use("Qt5Agg")  # 声明使用QT5
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 # 引入计算库
 import numpy as np
 # 引入环境吸引域
@@ -27,6 +30,7 @@ from rclpy.qos import qos_profile_sensor_data
 from std_msgs.msg import String, Float32MultiArray
 from PyQt5 import QtCore, QtGui, QtWidgets
 from .perception import perception_node
+from .forcefigure import udp_get
 
 class ControlApp(QMainWindow):
     def __init__(self, mainwindow):
@@ -132,11 +136,23 @@ class ControlApp(QMainWindow):
         ###传感器数据绘图
         self.drawTime = QtCore.QTimer(self)
         self.drawTime.timeout.connect(self.showTime)
-        self.figure = plt.figure()
-        self.canvas = FigureCanvas(self.figure)
-        self.gridlayout = QGridLayout(self.Ui_main.TipPosition)  # 继承容器groupBox       
-        self.gridlayout.addWidget(self.canvas,0,1)
-        self.x=[]
+        self.figure1 = plt.figure(1)
+        self.canvas1 = FigureCanvas(self.figure1)
+
+        self.gridlayout3 = QGridLayout(self.Ui_main.TipForce)  # 继承容器groupBox       
+        self.gridlayout3.addWidget(self.canvas1,0,1)
+
+        self.fx=[]
+        self.fy=[]
+        self.fz=[]
+        self.figure2 = plt.figure(2)
+        self.canvas2 = FigureCanvas(self.figure2)
+        self.gridlayout4 = QGridLayout(self.Ui_main.JointMoment)  # 继承容器groupBox       
+        self.gridlayout4.addWidget(self.canvas2,0,1)
+
+        self.tx=[]
+        self.ty=[]
+        self.tz=[]
         ###传感器数据绘图
 
         ###各类节点初始化
@@ -394,15 +410,33 @@ class ControlApp(QMainWindow):
         绘图槽函数
     '''
     def showTime(self):
-        randomData = np.random.random_sample()*10 # 返回一个[0,1)之间的浮点型随机数*10
-        self.x.append(randomData) # 数组更新  
+        # randomData = np.random.random_sample()*10 # 返回一个[0,1)之间的浮点型随机数*10
+        fx, fy, fz, tx, ty, tz = udp_get()
+        self.fx.append(fx) # 数组更新  
+        self.fy.append(fy)
+        self.fz.append(fz)
+        self.tx.append(tx) # 数组更新  
+        self.ty.append(ty)
+        self.tz.append(tz)
+
         self.ax.clear()
-        self.ax.plot(self.x)
-        self.canvas.draw()
+        self.ax.plot(self.fx,label='F_x') 
+        self.ax.plot(self.fy,label='F_y') 
+        self.ax.plot(self.fz,label='F_z') 
+        self.ax.legend()
+        self.canvas1.draw()
+
+        self.ay.clear()
+        self.ay.plot(self.tx,label='T_x') 
+        self.ay.plot(self.ty,label='T_y') 
+        self.ay.plot(self.tz,label='T_z') 
+        self.ay.legend()
+        self.canvas2.draw()
 
     def startTimer(self):
         # 设置计时间隔并启动
-        self.ax = self.figure.add_axes([0.1, 0.1, 0.8, 0.8]) # 创建图窗
+        self.ax = self.figure1.add_axes([0.15, 0.12, 0.85, 0.8]) # 创建图窗
+        self.ay = self.figure2.add_axes([0.15, 0.12, 0.85, 0.8])
         self.drawTime.start(500) # 每隔一秒执行一次绘图函数 showTime
 
     def suspendTimer(self):
