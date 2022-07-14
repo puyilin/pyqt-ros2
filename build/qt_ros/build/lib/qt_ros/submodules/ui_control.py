@@ -395,7 +395,6 @@ class ControlApp(QMainWindow):
             self.timer1.stop()
             # 画图停止
             self.drawTime.stop() # 计时停止
-            self.x=[] # 清空数组
             self.Ui_main.OrdersView.append('任务完成') # 文本框逐条添加数据
             self.Ui_main.OrdersView.moveCursor(self.Ui_main.OrdersView.textCursor().End) # 文本框显示到底部
         else:
@@ -444,8 +443,15 @@ class ControlApp(QMainWindow):
         self.drawTime.stop() # 每隔一秒执行一次绘图函数 showTime
 
     def endTimer(self):
+
         self.drawTime.stop() # 计时停止
-        self.x=[] # 清空数组
+        self.fx=[]
+        self.fy=[]
+        self.fz=[]
+        self.tx=[]
+        self.ty=[]
+        self.tz=[] # 清空数组
+       
 
     '''
         命令行显示槽函数
